@@ -16,6 +16,32 @@ define([
                 }).done(onComplete);
             },
 
+            follow: function(username, onComplete) {
+                $.ajax({
+                    url: "follow/",
+                    type: 'GET',
+                    data: {
+                        username: username
+                    },
+                    dataType: 'json',
+                    cache: false
+
+                }).done(onComplete);
+            },
+
+            unfollow: function(username, onComplete) {
+                $.ajax({
+                    url: "unfollow/",
+                    type: 'GET',
+                    data: {
+                        username: username
+                    },
+                    dataType: 'json',
+                    cache: false
+
+                }).done(onComplete);
+            },
+
             getAvatar: function(username) {
                 return "avatar/"+username;
             }

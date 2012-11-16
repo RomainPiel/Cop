@@ -21,6 +21,38 @@ function($, Api) {
 
         userListEl = $("#user-list");
 
+        userListEl.find("li button.follow").live("click", function() {
+            var $this = $(this),
+                li = $this.closest("li"),
+                action = li.attr("data-action");
+
+            if ($this.hasClass("disabled")) return;
+            $this.addClass("disabled");
+
+            var apiCall;
+            if (action == "follow") {
+                apiCall = api.follow;
+            } else if (action == "unfollow") {
+                apiCall = api.unfollow;
+            }
+
+            if (!apiCall) return;
+
+            apiCall(li.attr("data-id"), function(res) {
+                if (!res || !res.data) return;
+
+                if (res.data.you_follow) {
+                    $this.text("Unfollow");
+                    li.attr("data-action", "unfollow");
+                } else {
+                    $this.text("Follow");
+                    li.attr("data-action", "follow");
+                }
+
+                $this.removeClass("disabled");
+            });
+        });
+
         api.getFollowing(function(data) {
             
             if (data) {
@@ -38,6 +70,8 @@ function($, Api) {
                 for (var i in data) {
                     liEl =
                         $("<li></li>")
+                            .attr("data-id", "@"+data[i].username)
+                            .attr("data-action", "unfollow")
                             .append($("<div></div>")
                                 .addClass("bar")
                                 .attr("data-width", (data[i].score*100)+"%")
@@ -45,7 +79,7 @@ function($, Api) {
                             .append($("<img></img>").attr("src", api.getAvatar("@"+data[i].username)))
                             .append($("<span></span>").text("@"+data[i].username+" - "))
                             .append($("<span></span>").addClass("small").text(data[i].name.toUpperCase()))
-                            .append($("<button></button>").addClass("btn pull-right").text("Unfollow"))
+                            .append($("<button></button>").addClass("btn pull-right follow").text("Unfollow"))
                     
                     userListEl.append(liEl);
 

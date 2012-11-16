@@ -42,6 +42,32 @@ module.exports = function(app, isLoggedIn) {
         });
     });
 
+    app.get('/follow', isLoggedIn, function(req, res) {
+        appdotnet.follow(req, function(err, res1) {
+            if(err) {
+                res.status(500);
+                res.json({
+                    'error': 'error retrieving following'
+                });
+            } else {
+                res.json(res1);
+            }
+        });
+    });
+
+    app.get('/unfollow', isLoggedIn, function(req, res) {
+        appdotnet.unfollow(req, function(err, res1) {
+            if(err) {
+                res.status(500);
+                res.json({
+                    'error': 'error retrieving following'
+                });
+            } else {
+                res.json(res1);
+            }
+        });
+    });
+
     app.get('/avatar/:userid', function(req, res) {
         res.redirect(appdotnet.getAvatarUrl(req));
     });
