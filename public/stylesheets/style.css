@@ -7555,6 +7555,10 @@ h1 {
   margin-top: 10px;
   padding: 5px 10px;
 }
+.container-fluid.black div.content ul#user-list li button {
+  height: 30px;
+  margin: 10px;
+}
 .container-fluid.black div.content ul#user-list li div.bar {
   z-index: 10;
   position: absolute;
@@ -7569,11 +7573,6 @@ h1 {
   -moz-transition: width 1s;
   -o-transition: width 1s;
   transition: width 1s;
-}
-.container-fluid.black div.content ul#user-list li div.bar span.pull-right {
-  line-height: 50px;
-  opacity: .4;
-  padding-right: 10px;
 }
 .container-fluid.black div.content ul#user-list li img {
   z-index: 100;
