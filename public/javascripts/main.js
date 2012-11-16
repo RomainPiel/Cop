@@ -15,11 +15,14 @@ function($, Api) {
 
     var api = Api();
 
-    var userListEl;
+    var userListEl, spinnerEl;
 
     $(function() {
 
         userListEl = $("#user-list");
+        loaderEl = $("#loader");
+
+        startLoading();
 
         userListEl.find("li button.follow").live("click", function() {
             var $this = $(this),
@@ -92,6 +95,8 @@ function($, Api) {
                 }
             }
 
+            stopLoading();
+
         });
     });
 
@@ -131,6 +136,16 @@ function($, Api) {
         }
 
         user.score = (postScore*3 + activityScore)/4;
+    }
+
+    function startLoading() {
+        userListEl.hide();
+        loaderEl.show();
+    }
+
+    function stopLoading() {
+        userListEl.show();
+        loaderEl.hide();
     }
 
 });

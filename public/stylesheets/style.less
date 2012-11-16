@@ -1,6 +1,7 @@
 
 @import "bootstrap/bootstrap.less";
 @import "bootstrap/responsive.less";
+@import "spinner.less";
 
 html, body {
     height: 100%;
@@ -81,6 +82,16 @@ h1 {
         div.content {
             height: 100%;
             overflow: auto;
+            position: relative;
+
+            div#loader {
+                position: absolute;
+                width: 200px;
+                top: 35%;
+                left: 50%;
+                margin-left: -100px;
+                text-align: center;
+            }
 
             ul#user-list {
                 li {
