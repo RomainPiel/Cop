@@ -24,16 +24,64 @@ function($, Api) {
         api.getFollowing(function(data) {
             
             if (data) {
+
+                var maxPostCount = getMaxPostCount(data),
+                    biggestInactiveGap = getBiggestInactiveGap(data);
+
+                for (var i in data) {
+                    calculateScore(data[i], maxPostCount, biggestInactiveGap);
+                }
+
+                data.sort(compareUsers);
+
                 for (var i in data) {
                     userListEl.append(
                         $("<li></li>")
-                            .append($("<span></span>").text("@"+data[i].username))
-                            .append($("<span></span>").text("("+data[i].name+")"))
+                            .append($("<div></div>").addClass("bar").css({width: (data[i].score*100)+"%"}))
+                            .append($("<span></span>").text("@"+data[i].username+"  ("+data[i].name+")"))
                     );
                 }
             }
 
         });
     });
+
+    function compareUsers(u1, u2) {
+        return u1.score - u2.score;
+    }
+
+    function getMaxPostCount(users) {
+        var result = null;
+        for (var i in users) {
+            if (result == null || result < users[i].post_count) {
+                result = users[i].post_count;
+            }
+        }
+        return result;
+    }
+
+    function getBiggestInactiveGap(users) {
+        var result = null;
+        var aux;
+        for (var i in users) {
+            aux = new Date() - new Date(users[i].last_post_at);
+            if (result == null || (users[i].last_post_at != null && result > aux)) {
+                result = aux;
+            }
+        }
+
+        return result;
+    }
+
+    function calculateScore(user, maxPostCount, biggestInactiveGap) {
+        var postScore = user.post_count/maxPostCount;
+        
+        var activityScore = 0;
+        if (user.last_post_at != null) {
+            activityScore = biggestInactiveGap/(new Date() - new Date(user.last_post_at));
+        }
+
+        user.score = (postScore*3 + activityScore)/4;
+    }
 
 });

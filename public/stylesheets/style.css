@@ -7540,3 +7540,24 @@ h1 {
   height: 100%;
   overflow: auto;
 }
+.container-fluid.black div.content ul#user-list li {
+  position: relative;
+  list-style: none;
+  display: block;
+  height: 50px;
+  width: 100%;
+  margin-top: 10px;
+}
+.container-fluid.black div.content ul#user-list li div.bar {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: red;
+  display: block;
+  height: 100%;
+}
+.container-fluid.black div.content ul#user-list li span {
+  z-index: 100;
+  position: relative;
+}

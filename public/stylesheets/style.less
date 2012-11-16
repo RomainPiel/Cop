@@ -74,6 +74,34 @@ h1 {
         div.content {
             height: 100%;
             overflow: auto;
+
+            ul#user-list {
+                li {
+                    position: relative;
+                    list-style: none;
+                    display: block;
+                    height: 50px;
+                    width: 100%;
+                    margin-top: 10px;
+
+                    div.bar {
+                        z-index: 10;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        background-color: red;
+                        display: block;
+                        height: 100%;
+                    }
+
+                    span {
+                        z-index: 100;
+                        position: relative;
+                    }
+                }
+            }
         }
     }
 }
+
+
