@@ -19,14 +19,25 @@ module.exports = function(app, isLoggedIn) {
     });
 
     app.get('/following', isLoggedIn, function(req, res) {
-        appdotnet.getFollowingIds(req, function(err, user) {
+        appdotnet.getFollowing(req, function(err, res1) {
             if(err) {
                 res.status(500);
                 res.json({
                     'error': 'error retrieving following'
                 });
             } else {
-                res.json(user);
+                req.query.users = res1.data;
+
+                appdotnet.getLastPosts(req, function(err, res2) {
+                    if(err) {
+                        res.status(500);
+                        res.json({
+                            'error': 'error retrieving last posts'
+                        });
+                    } else {
+                        res.json(res2);
+                    }
+                })
             }
         });
     });

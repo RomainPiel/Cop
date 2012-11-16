@@ -6,6 +6,15 @@ define([
 
         var that = {
 
+            getFollowing: function(onComplete) {
+                $.ajax({
+                    url: "following/",
+                    type: 'GET',
+                    dataType: 'json',
+                    cache: false
+
+                }).done(onComplete);
+            },
             
         }
 

@@ -17,6 +17,9 @@ function($, Api) {
 
     $(function() {
 
+        api.getFollowing(function(data) {
+            console.log(data);
+        })
     });
 
 });
