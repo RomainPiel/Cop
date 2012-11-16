@@ -7553,27 +7553,45 @@ h1 {
   height: 50px;
   width: 100%;
   margin-top: 10px;
+  padding: 5px 10px;
 }
 .container-fluid.black div.content ul#user-list li div.bar {
   z-index: 10;
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #08c;
+  background-color: #ce2732;
   display: block;
   height: 100%;
   width: 0;
+  overflow: hidden;
   -webkit-transition: width 1s;
   -moz-transition: width 1s;
   -o-transition: width 1s;
   transition: width 1s;
 }
-.container-fluid.black div.content ul#user-list li span {
-  font: 200 60px "Helvetica Neue", Helvetica, Arial, sans-serif;
+.container-fluid.black div.content ul#user-list li div.bar span.pull-right {
   line-height: 50px;
-  padding: 0 10px;
+  opacity: .4;
+  padding-right: 10px;
+}
+.container-fluid.black div.content ul#user-list li img {
   z-index: 100;
   position: relative;
+  height: 100%;
+  width: auto;
+}
+.container-fluid.black div.content ul#user-list li span {
+  z-index: 100;
+  position: relative;
+  font: 200 60px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 30px;
   font-size: 18px;
-  color: #656565;
+  color: #eee;
+}
+.container-fluid.black div.content ul#user-list li span:first-of-type {
+  padding-left: 10px;
+}
+.container-fluid.black div.content ul#user-list li span.small {
+  font-size: 13px;
 }

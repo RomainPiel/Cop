@@ -41,8 +41,14 @@ function($, Api) {
                             .append($("<div></div>")
                                 .addClass("bar")
                                 .attr("data-width", (data[i].score*100)+"%")
+                                .append($("<span></span>")
+                                    .addClass("pull-right")
+                                    .text((Math.round((data[i].score*100)*10)/10)+"%")
+                                )
                             )
-                            .append($("<span></span>").text("@"+data[i].username+"  ("+data[i].name+")"))
+                            .append($("<img></img>").attr("src", api.getAvatar("@"+data[i].username)))
+                            .append($("<span></span>").text("@"+data[i].username+" - "))
+                            .append($("<span></span>").addClass("small").text(data[i].name.toUpperCase()))
                     
                     userListEl.append(liEl);
 

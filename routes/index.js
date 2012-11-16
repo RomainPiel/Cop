@@ -41,4 +41,8 @@ module.exports = function(app, isLoggedIn) {
             }
         });
     });
+
+    app.get('/avatar/:userid', function(req, res) {
+        res.redirect(appdotnet.getAvatarUrl(req));
+    });
 }

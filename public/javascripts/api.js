@@ -15,6 +15,10 @@ define([
 
                 }).done(onComplete);
             },
+
+            getAvatar: function(username) {
+                return "avatar/"+username;
+            }
             
         }
 
