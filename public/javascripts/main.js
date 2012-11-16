@@ -34,12 +34,24 @@ function($, Api) {
 
                 data.sort(compareUsers);
 
+                var liEl;
                 for (var i in data) {
-                    userListEl.append(
+                    liEl =
                         $("<li></li>")
-                            .append($("<div></div>").addClass("bar").css({width: (data[i].score*100)+"%"}))
+                            .append($("<div></div>")
+                                .addClass("bar")
+                                .attr("data-width", (data[i].score*100)+"%")
+                            )
                             .append($("<span></span>").text("@"+data[i].username+"  ("+data[i].name+")"))
-                    );
+                    
+                    userListEl.append(liEl);
+
+                    setTimeout(function() {
+                        $("div.bar[data-width]").each(function() {
+                            var $this = $(this);
+                            $this.css({width: $this.attr("data-width")});
+                        })
+                    }, 0)
                 }
             }
 
@@ -47,7 +59,7 @@ function($, Api) {
     });
 
     function compareUsers(u1, u2) {
-        return u1.score - u2.score;
+        return -u1.score + u2.score;
     }
 
     function getMaxPostCount(users) {
