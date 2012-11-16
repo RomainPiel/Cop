@@ -17,4 +17,17 @@ module.exports = function(app, isLoggedIn) {
             res.redirect("/auth/appdotnet");
         }
     });
+
+    app.get('/following', isLoggedIn, function(req, res) {
+        appdotnet.getFollowingIds(req, function(err, user) {
+            if(err) {
+                res.status(500);
+                res.json({
+                    'error': 'error retrieving user'
+                });
+            } else {
+                res.json(user);
+            }
+        });
+    });
 }
