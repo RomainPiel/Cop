@@ -7521,6 +7521,12 @@ h1 {
   background-color: #111;
   height: 100%;
 }
+.container-fluid.black button.btn {
+  background: transparent;
+  border-color: #777;
+  color: #777;
+  text-shadow: none;
+}
 .container-fluid.black div.sidebar {
   background-color: rgba(0, 0, 0, 0.5);
   height: 100%;
