@@ -23,7 +23,7 @@ module.exports = function(app, isLoggedIn) {
             if(err) {
                 res.status(500);
                 res.json({
-                    'error': 'error retrieving user'
+                    'error': 'error retrieving following'
                 });
             } else {
                 res.json(user);
