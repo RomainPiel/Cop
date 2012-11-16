@@ -15,11 +15,25 @@ function($, Api) {
 
     var api = Api();
 
+    var userListEl;
+
     $(function() {
 
+        userListEl = $("#user-list");
+
         api.getFollowing(function(data) {
-            console.log(data);
-        })
+            
+            if (data) {
+                for (var i in data) {
+                    userListEl.append(
+                        $("<li></li>")
+                            .append($("<span></span>").text("@"+data[i].username))
+                            .append($("<span></span>").text("("+data[i].name+")"))
+                    );
+                }
+            }
+
+        });
     });
 
 });
