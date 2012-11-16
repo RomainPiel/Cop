@@ -1,5 +1,25 @@
 extends layout
 
+block append scripts
+    script(src='/javascripts/lib/require.js', data-main='javascripts/index.js')    
+
 block content
-  h1= title
-  p Welcome to #{title}
+    div#wrapper
+        div.container-fluid
+            div.row-fluid
+                h1 Cop
+            div.row-fluid
+                div.span6
+                    p.subtitle 
+                        span Find inactive 
+                        a(href='http://alpha.app.net') App.net 
+                        span users in your following list.
+            div.row-fluid.block
+                p
+                    span This app was made by 
+                    a(href='http://alpha.app.net/rp') @rp
+            div.row-fluid.block
+                div.span6.links
+                    a(href='/app').visible-non-touch Get started
+                    span.visible-non-touch  - 
+                    a(href='https://github.com/RomainPiel/Tree') Github project

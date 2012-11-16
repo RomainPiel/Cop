@@ -1,0 +1,15 @@
+extends layout
+
+block append scripts
+    script(src='/javascripts/lib/require.js', data-main='javascripts/main.js')    
+
+block content
+    div.container-fluid
+        div.sidebar.span3
+            div.row-fluid
+                a(href= "/")
+                    h1 Cop
+                p Copy.
+        div.span9
+            div.row-fluid
+                p Content
